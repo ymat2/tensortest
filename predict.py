@@ -1,25 +1,39 @@
 from tensorflow.keras.models import load_model
-from dataset import load_mnist_dataset
-import matplotlib.pyplot as plt
+from PIL import Image
+
+import argparse
 import numpy as np
 
 
-def pred(model_path):
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--input")
+    args = parser.parse_args()
+    return args
+
+
+def read_image_as_array(file):
+    img = Image.open(file)
+    img = img.convert("L").resize((28, 28))
+    img = np.asarray(img)
+    return img
+
+def pred(file, model_path):
+    img = read_image_as_array(file)
+    img = img.reshape((1, 784))
     model = load_model(model_path)
-    (_, _), (x_test, _) = load_mnist_dataset()
 
-    for i in range(5):
-        plt.subplot(1, 5, i+1)
-        plt.imshow(x_test[i].reshape((28, 28)), 'gray')
-    plt.show()
-
-    test_predictions = model.predict(x_test[0:5])
+    test_predictions = model.predict(img)
     test_predictions = np.argmax(test_predictions, axis = 1)
-    print(test_predictions)
+    return test_predictions
 
 
 def main():
-    pred(model_path = "models/full_mnist_model.h5")
+    args = parse_arguments()
+    file = args.input
+    model = "models/full_mnist_model.h10"
+    result = pred(file, model_path = model)
+    print(result)
 
 
 if __name__ == "__main__":

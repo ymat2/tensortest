@@ -21,7 +21,7 @@ def build_sequential_model(data_shape):
 
 
 def save_history_as_fig(history):
-    plt.figure(figsize=(7, 7))
+    plt.figure(figsize=(5, 5))
     plt.plot(history.history['acc'], label = 'Training accuracy')
     plt.plot(history.history['val_acc'], label = 'Validation accuracy')
     plt.ylabel('Accuracy')
