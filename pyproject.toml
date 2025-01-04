@@ -1,0 +1,14 @@
+[project]
+name = "tensortest"
+version = "0.1.0"
+description = "A test repository to use tesorflow on Windows."
+readme = "README.md"
+requires-python = "<=3.10,>3.8"
+dependencies = [
+  "numpy==1.26",
+  "matplotlib==3.6.3",
+  "tensorflow==2.10",
+  "tensorboard==2.10",
+  "tensorflow_probability==0.18.0",
+  "tensorflow-io-gcs-filesystem==0.31.0"
+]
