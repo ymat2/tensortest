@@ -3,7 +3,7 @@ name = "tensortest"
 version = "0.1.0"
 description = "A test repository to use tesorflow on Windows."
 readme = "README.md"
-requires-python = "<=3.10,>3.8"
+requires-python = "<3.11,>=3.9"
 dependencies = [
   "numpy==1.26",
   "matplotlib==3.6.3",
